@@ -1,0 +1,5 @@
+<resources>
+ <color name="brand_color">#1e88e5</color>
+ <color name="brand_dark_color">#1565c0</color>
+ <color name="brand_accent_color">#c41411</color>
+</resources>

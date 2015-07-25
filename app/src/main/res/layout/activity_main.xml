@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:fab="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical"
+ tools:context=".MainActivity">
+
+ <android.support.v7.widget.Toolbar
+  android:id="@+id/tool_bar"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="?attr/colorPrimary"
+  android:minHeight="?attr/actionBarSize"
+  app:popupTheme="@style/Theme.AppCompat.Light" />
+
+ <FrameLayout
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ListView
+   android:id="@+id/consumableListView"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent" />
+
+  <com.melnykov.fab.FloatingActionButton
+   android:id="@+id/newButton"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_gravity="bottom|end"
+   android:layout_margin="16dp"
+   android:src="@drawable/ic_add_white_24dp"
+   fab:fab_colorNormal="@color/brand_color"
+   fab:fab_colorPressed="@color/brand_color"
+   fab:fab_colorRipple="@color/brand_color" />
+ </FrameLayout>
+</LinearLayout>
