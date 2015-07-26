@@ -1,5 +1,6 @@
 package net.kuwalab.android.consumable;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import net.kuwalab.android.consumable.dao.ConsumableDao;
 import net.kuwalab.android.consumable.dao.impl.ConsumableDaoImpl;
@@ -34,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.newButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplication(), "oshita", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent();
+                intent.setClassName("net.kuwalab.android.consumable",
+                    "net.kuwalab.android.consumable.NewActivity");
+
+                startActivity(intent);
             }
         });
 
