@@ -4,4 +4,8 @@
  <string name="app_new_name">新しい消耗品の追加</string>
 
  <string name="action_settings">Settings</string>
+
+ <string name="entity_consumable_name">消耗品名</string>
+ <string name="entity_consumable_note">備考</string>
+ <string name="entity_consumable_price">最安値</string>
 </resources>
