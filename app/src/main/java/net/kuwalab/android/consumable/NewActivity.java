@@ -57,6 +57,7 @@ public class NewActivity extends AppCompatActivity {
 
             consumableDao.insertInit(consumable);
             db.close();
+            appOpenHelper.close();
 
             Toast.makeText(this, "消耗品を登録しました", Toast.LENGTH_SHORT).show();
         }

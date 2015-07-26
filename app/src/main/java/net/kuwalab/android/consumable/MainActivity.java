@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         consumableListView.setAdapter(simpleAdapter);
 
         db.close();
+        appOpenHelper.close();
     }
 
     @Override

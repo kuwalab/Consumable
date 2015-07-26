@@ -4,6 +4,7 @@
   <item name="colorPrimary">@color/brand_color</item>
   <item name="colorPrimaryDark">@color/brand_dark_color</item>
   <item name="colorAccent">@color/brand_accent_color</item>
+  <item name="android:typeface">monospace</item>
  </style>
 
 </resources>
