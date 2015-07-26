@@ -24,9 +24,9 @@ public class Consumable {
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         map.put("consumableName", consumableName);
-        map.put("consumablePrice", consumablePrice == -1 ? "" : String.valueOf(consumablePrice));
+        map.put("consumablePrice", consumablePrice == -1 ? "-" : String.valueOf(consumablePrice));
         map.put("consumableDate", consumableDate);
-        map.put("consumableCount", consumableCount == -1 ? "" : String.valueOf(consumableCount));
+        map.put("consumableCount", consumableCount == -1 ? "----/--/--" : String.valueOf(consumableCount));
 
         return map;
     }
