@@ -22,6 +22,7 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
+    private ListView consumableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.newButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClassName("net.kuwalab.android.consumable",
                     "net.kuwalab.android.consumable.NewActivity");
 
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ListView consumableListView = (ListView) findViewById(R.id.consumableListView);
+        consumableListView = (ListView) findViewById(R.id.consumableListView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         AppOpenHelper appOpenHelper = new AppOpenHelper(this);
         SQLiteDatabase db = appOpenHelper.getReadableDatabase();
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             new String[]{"consumableName", "consumableDate", "consumablePrice"},
             new int[]{R.id.consumableName, R.id.consumableDate, R.id.consumablePrice});
         consumableListView.setAdapter(simpleAdapter);
+
+        db.close();
     }
 
     @Override

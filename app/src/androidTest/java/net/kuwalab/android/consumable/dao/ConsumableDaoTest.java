@@ -90,6 +90,36 @@ public class ConsumableDaoTest {
     }
 
     @Test
+    public void データの初期登録のテスト() throws Exception {
+        prepareData();
+
+        Consumable consumable = new Consumable();
+        consumable.setConsumableName("単四電池");
+        consumable.setConsumableFurigana("タンヨンデンチ");
+        consumable.setConsumableNote("備考");
+
+        ConsumableDao consumableDao = new ConsumableDaoImpl(db);
+        long id = consumableDao.insertInit(consumable);
+        assertThat("IDがインクリメントされている", id, is(4L));
+
+        Cursor cursor = db.rawQuery("SELECT * FROM consumable " +
+            "WHERE consumable_name = '単四電池'", null);
+        if (!cursor.moveToNext()) {
+            fail("追加したレコードが存在しない");
+        }
+
+        assertThat("IDが登録されている", cursor.getLong(0), is(4L));
+        assertThat("消耗品名が登録されている", cursor.getString(1), is("単四電池"));
+        assertThat("消耗品名のフリガナが登録されている", cursor.getString(2), is("タンヨンデンチ"));
+        assertThat("消耗品の備考が登録されている", cursor.getString(3), is("備考"));
+        assertThat("消耗品の最安値が登録されていない", cursor.getInt(4), is(-1));
+        assertThat("消耗品の購入日が登録されていない", cursor.getString(5), is(""));
+        assertThat("消耗品の購入個数が登録されていない", cursor.getInt(6), is(-1));
+
+        cursor.close();
+    }
+
+    @Test
     public void 全件取得が正しく動作すること() throws Exception {
         prepareData();
 

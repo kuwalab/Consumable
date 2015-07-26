@@ -3,6 +3,7 @@ package net.kuwalab.android.consumable.dao.impl;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.support.annotation.NonNull;
 
 import net.kuwalab.android.consumable.dao.ConsumableDao;
@@ -29,6 +30,21 @@ public class ConsumableDaoImpl implements ConsumableDao {
         values.put(Consumable.CONSUMABLE_COUNT, consumable.getConsumableCount());
 
         return db.insert(Consumable.NAME, "", values);
+    }
+
+    @Override
+    public long insertInit(@NonNull Consumable consumable) {
+        SQLiteStatement stmt =  db.compileStatement("INSERT INTO " + Consumable.NAME  + "(" +
+                Consumable.CONSUMABLE_NAME + ", "+
+                Consumable.CONSUMABLE_FURIGANA + ", "+
+                Consumable.CONSUMABLE_NOTE + ") " +
+                "VALUES(?, ?, ?)"
+        );
+        stmt.bindString(1, consumable.getConsumableName());
+        stmt.bindString(2, consumable.getConsumableFurigana());
+        stmt.bindString(3, consumable.getConsumableNote());
+
+        return stmt.executeInsert();
     }
 
     @Override
