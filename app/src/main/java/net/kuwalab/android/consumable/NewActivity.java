@@ -31,6 +31,7 @@ public class NewActivity extends AppCompatActivity {
     private AppCompatEditText noteEditText;
 
     private Uri pictureUri;
+    private String imagePath;
     private static final int REQUEST_CODE_TAKE_IMAGE = 0;
     private static final int REQUEST_CODE_IMAGE_CHOOSER = 1;
 
@@ -102,7 +103,6 @@ public class NewActivity extends AppCompatActivity {
         Uri uri = null;
         if (requestCode == REQUEST_CODE_TAKE_IMAGE) {
             uri = pictureUri;
-
         } else if (requestCode == REQUEST_CODE_IMAGE_CHOOSER) {
             uri = data.getData();
         }
@@ -112,7 +112,7 @@ public class NewActivity extends AppCompatActivity {
         iv.setImageURI(uri);
 
         // test
-        ImageUtil.uriToPath(this, uri, requestCode == REQUEST_CODE_IMAGE_CHOOSER);
+        imagePath = ImageUtil.uriToPath(this, uri, requestCode == REQUEST_CODE_IMAGE_CHOOSER);
 
         pictureUri = null;
     }
