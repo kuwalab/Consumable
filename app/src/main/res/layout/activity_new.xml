@@ -42,5 +42,24 @@
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    android:hint="@string/entity_consumable_note" />
+
+  <LinearLayout
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content">
+
+   <ImageView
+    android:id="@+id/consumableImageView"
+    android:layout_width="160dp"
+    android:layout_height="160dp"
+    android:contentDescription="@string/image_consumable_pic"
+    android:src="@drawable/abc_btn_check_to_on_mtrl_015" />
+
+   <android.support.v7.widget.AppCompatButton
+    android:id="@+id/cameraButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/action_change" />
+
+  </LinearLayout>
  </LinearLayout>
 </LinearLayout>
