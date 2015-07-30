@@ -1,5 +1,6 @@
 package net.kuwalab.android.consumable.dao.impl;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -13,6 +14,15 @@ public class ConsumablePicDaoImpl implements ConsumablePicDao {
 
     public ConsumablePicDaoImpl(SQLiteDatabase db) {
         this.db = db;
+    }
+
+    @Override
+    public long insert(@NonNull ConsumablePic consumablePic) {
+        ContentValues values = new ContentValues();
+        values.put(ConsumablePic.CONSUMABLE_ID, consumablePic.getConsumableId());
+        values.put(ConsumablePic.CONSUMABLE_PIC, consumablePic.getConsumablePic());
+
+        return db.insert(ConsumablePic.NAME, "", values);
     }
 
     @Nullable
