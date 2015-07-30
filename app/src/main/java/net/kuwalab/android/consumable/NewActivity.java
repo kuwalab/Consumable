@@ -19,10 +19,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.kuwalab.android.consumable.dao.ConsumableDao;
+import net.kuwalab.android.consumable.dao.ConsumablePicDao;
 import net.kuwalab.android.consumable.dao.impl.ConsumableDaoImpl;
+import net.kuwalab.android.consumable.dao.impl.ConsumablePicDaoImpl;
 import net.kuwalab.android.consumable.entity.Consumable;
+import net.kuwalab.android.consumable.entity.ConsumablePic;
 import net.kuwalab.android.consumable.helper.AppOpenHelper;
 import net.kuwalab.android.consumable.util.ImageUtil;
+import net.kuwalab.android.consumable.util.IoUtil;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class NewActivity extends AppCompatActivity {
@@ -139,7 +148,21 @@ public class NewActivity extends AppCompatActivity {
             consumable.setConsumableFurigana(furigana);
             consumable.setConsumableNote(note);
 
-            consumableDao.insertInit(consumable);
+            long consumableId = consumableDao.insertInit(consumable);
+
+            if (imagePath != null) {
+                ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
+                ConsumablePic consumablePic = new ConsumablePic();
+                consumablePic.setConsumableId(consumableId);
+                InputStream is = null;
+                try {
+                     is = new FileInputStream(new File(imagePath));
+                    consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
+                    consumablePicDao.insert(consumablePic);
+                } catch(IOException e) {
+                }
+            }
+
             db.close();
             appOpenHelper.close();
 
