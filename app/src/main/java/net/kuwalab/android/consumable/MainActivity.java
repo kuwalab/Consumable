@@ -9,16 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import net.kuwalab.android.consumable.dao.ConsumableDao;
 import net.kuwalab.android.consumable.dao.impl.ConsumableDaoImpl;
 import net.kuwalab.android.consumable.entity.Consumable;
 import net.kuwalab.android.consumable.helper.AppOpenHelper;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private ListView consumableListView;
@@ -53,18 +50,11 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = appOpenHelper.getReadableDatabase();
         ConsumableDao consumableDao = new ConsumableDaoImpl(db);
         List<Consumable> consumableList = consumableDao.selectAll();
-
-        List<Map<String, String>> data = new ArrayList<>();
-        for (Consumable consumable : consumableList) {
-            data.add(consumable.toMap());
-        }
-        SimpleAdapter simpleAdapter = new ConsumableAdapter(this, data, R.layout.consumable_row,
-            new String[]{"consumableName", "consumableDate", "consumablePrice"},
-            new int[]{R.id.consumableName, R.id.consumableDate, R.id.consumablePrice});
-        consumableListView.setAdapter(simpleAdapter);
-
         db.close();
         appOpenHelper.close();
+
+        ConsumableAdapter consumableAdapter = new ConsumableAdapter(this, 0, consumableList);
+        consumableListView.setAdapter(consumableAdapter);
     }
 
     @Override

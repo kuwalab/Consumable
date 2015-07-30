@@ -6,19 +6,18 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.ArrayAdapter;
+
+import net.kuwalab.android.consumable.entity.Consumable;
 
 import java.util.List;
-import java.util.Map;
 
-public class ConsumableAdapter extends SimpleAdapter {
+public class ConsumableAdapter extends ArrayAdapter<Consumable> {
     private LayoutInflater layoutInflater;
 
-    public ConsumableAdapter(Context context, List<? extends Map<String, ?>> data,
-                             int resource, String[] from, int[] to) {
-        super(context, data, resource, from, to);
-        layoutInflater =  (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public ConsumableAdapter(Context context, int resource, List<Consumable> objects) {
+        super(context, resource, objects);
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
     }
 
     @Override
@@ -27,20 +26,19 @@ public class ConsumableAdapter extends SimpleAdapter {
             convertView = layoutInflater.inflate(R.layout.consumable_row, parent, false);
         }
 
-        ListView listView = (ListView) parent;
-        Map<String, Object> data = (Map<String, Object>) listView.getItemAtPosition(position);
+        Consumable consumable = (Consumable) getItem(position);
 
         AppCompatTextView consumableName =
             (AppCompatTextView) convertView.findViewById(R.id.consumableName);
-        consumableName.setText(data.get("consumableName").toString());
+        consumableName.setText(consumable.getConsumableName());
 
         AppCompatTextView consumableDate =
             (AppCompatTextView) convertView.findViewById(R.id.consumableDate);
-        consumableDate.setText(data.get("consumableDate").toString());
+        consumableDate.setText(consumable.getConsumableDate());
 
         AppCompatTextView consumablePrice =
             (AppCompatTextView) convertView.findViewById(R.id.consumablePrice);
-        consumablePrice.setText(data.get("consumablePrice").toString());
+        consumablePrice.setText(consumable.getConsumablePrice() + "");
 
         return convertView;
     }

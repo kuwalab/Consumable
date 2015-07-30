@@ -57,6 +57,7 @@ public class ConsumableDaoImpl implements ConsumableDao {
         while (cursor.moveToNext()) {
             consumableList.add(toConsumable(cursor));
         }
+        cursor.close();
 
         return consumableList;
     }
