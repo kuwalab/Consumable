@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         for (Consumable consumable : consumableList) {
             data.add(consumable.toMap());
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, data, R.layout.consumable_row,
+        SimpleAdapter simpleAdapter = new ConsumableAdapter(this, data, R.layout.consumable_row,
             new String[]{"consumableName", "consumableDate", "consumablePrice"},
             new int[]{R.id.consumableName, R.id.consumableDate, R.id.consumablePrice});
         consumableListView.setAdapter(simpleAdapter);
