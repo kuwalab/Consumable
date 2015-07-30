@@ -10,23 +10,23 @@ public class ConsumablePic {
     /** 消耗品写真 */
     public static final String CONSUMABLE_PIC = "consumable_pic";
 
-    private int consumablePicId;
-    private int consumableId;
+    private long consumablePicId;
+    private long consumableId;
     private byte[] consumablePic;
 
-    public int getConsumablePicId() {
+    public long getConsumablePicId() {
         return consumablePicId;
     }
 
-    public void setConsumablePicId(int consumablePicId) {
+    public void setConsumablePicId(long consumablePicId) {
         this.consumablePicId = consumablePicId;
     }
 
-    public int getConsumableId() {
+    public long getConsumableId() {
         return consumableId;
     }
 
-    public void setConsumableId(int consumableId) {
+    public void setConsumableId(long consumableId) {
         this.consumableId = consumableId;
     }
 
