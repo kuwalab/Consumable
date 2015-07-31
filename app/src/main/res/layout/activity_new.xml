@@ -68,7 +68,7 @@
     android:layout_height="160dp"
     android:contentDescription="@string/image_consumable_pic"
     android:src="@drawable/ic_assignment_turned_in_black_48dp"/>
-   
+
    <android.support.v7.widget.AppCompatButton
     android:id="@+id/cameraButton"
     android:layout_width="wrap_content"
