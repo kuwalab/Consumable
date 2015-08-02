@@ -28,17 +28,19 @@ public class ConsumableAdapter extends ArrayAdapter<Consumable> {
 
         Consumable consumable = (Consumable) getItem(position);
 
+
+
         AppCompatTextView consumableName =
             (AppCompatTextView) convertView.findViewById(R.id.consumableName);
         consumableName.setText(consumable.getConsumableName());
 
         AppCompatTextView consumableDate =
             (AppCompatTextView) convertView.findViewById(R.id.consumableDate);
-        consumableDate.setText(consumable.getConsumableDate());
+        consumableDate.setText(consumable.getDispConsumableDate());
 
         AppCompatTextView consumablePrice =
             (AppCompatTextView) convertView.findViewById(R.id.consumablePrice);
-        consumablePrice.setText(consumable.getConsumablePrice() + "");
+        consumablePrice.setText(consumable.getDispConsumablePrice() + "");
 
         return convertView;
     }

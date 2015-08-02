@@ -1,7 +1,6 @@
 package net.kuwalab.android.consumable.entity;
 
-import java.util.HashMap;
-import java.util.Map;
+import net.kuwalab.android.consumable.util.StringUtil;
 
 public class Consumable {
     /** テーブル名 */
@@ -21,16 +20,6 @@ public class Consumable {
     /** 消耗品購入数 */
     public static final String CONSUMABLE_COUNT = "consumable_count";
 
-    public Map<String, String> toMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("consumableName", consumableName);
-        map.put("consumablePrice", consumablePrice == -1 ? "-" : String.valueOf(consumablePrice));
-        map.put("consumableDate", consumableDate.length() == 0 ? "----/--/--" : consumableDate);
-        map.put("consumableCount", consumableCount == -1 ? "" : String.valueOf(consumableCount));
-
-        return map;
-    }
-
     private long consumableId;
     private String consumableName;
     private String consumableFurigana;
@@ -38,6 +27,24 @@ public class Consumable {
     private int consumablePrice;
     private String consumableDate;
     private int consumableCount;
+
+    public String getDispConsumablePrice() {
+        if (consumablePrice == -1) {
+            return "¥ ---";
+        }
+        return consumablePrice + "";
+    }
+
+    /**
+     * 表示用の消耗品最終購入日の取得
+     * @return
+     */
+    public String getDispConsumableDate() {
+        if (StringUtil.isEmpty(consumableDate)) {
+            return "----/--/--";
+        }
+        return consumableDate;
+    }
 
     public long getConsumableId() {
         return consumableId;
